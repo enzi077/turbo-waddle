@@ -8,7 +8,7 @@ const DashboardGraph=({countries,lastDays})=>{
     
     useEffect(()=>{
         reqData()
-    },[countries])
+    },[countries,lastDays])
     
     const reqData=async()=>{
         const response=await 
@@ -44,6 +44,27 @@ const DashboardGraph=({countries,lastDays})=>{
     
     const options={
         responsive: true,
+        title: {
+            display: true,
+            text: 'Death rates of countries with highest number of Covid-19 cases'
+        },
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Death Rate'
+                }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: `Last ${lastDays} days`
+                },
+                ticks: {
+                    stepSize: 5
+                }
+            }]
+        }
     }
     
     return (

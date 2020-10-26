@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { responsiveFontSizes, ThemeProvider } from '@material-ui/core';
+import theme from './theme'
 
+let themeNew=responsiveFontSizes(theme)
 ReactDOM.render(
-//   <React.StrictMode>
-    <App />,
-//  </React.StrictMode>,
+    <ThemeProvider theme={themeNew}>
+        <App />
+    </ThemeProvider>,
   document.getElementById('root')
 );
 
