@@ -1,10 +1,14 @@
-import { Card, Grid, CardContent, CardActionArea, makeStyles, Button } from '@material-ui/core'
+import { Grid,makeStyles, Button, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
-import IndvidualCountry from './IndividualCountry'
+import ShowCountry from './ShowCountry'
 
 const useStyles=makeStyles((theme)=>({
     country__mainDiv:{
         margin: '10px 20px'
+    },
+    country__heading:{
+        display:'flex',
+        justifyContent:'center'
     },
     country__gridContainer:{
         marginTop: '10px'
@@ -31,23 +35,23 @@ const useStyles=makeStyles((theme)=>({
     }
 }))
 const Country=({data})=> {
-    // const [search,setSearch]=useState('')
     const [query,setQuery]=useState('')
-    let search=''
+    const [search,setSearch]=useState('')
     const searchCountry=(e)=>{
         e.preventDefault()
         setQuery(search)
-        search=''
+        setSearch('')
     }
     
     const updateSearch=(e)=>{
-        search=e.target.value
+        setSearch(e.target.value)
     }
     
     const classes=useStyles()
     
     return (
         <div className={classes.country__mainDiv}>
+            <Typography variant='h6' className={classes.country__heading}>Covid-19 all-time totals</Typography>
             <form onSubmit={searchCountry} className={classes.country__form}>
                 <input 
                     onChange={updateSearch}
@@ -70,43 +74,23 @@ const Country=({data})=> {
                 query ? (
                     data.map((eachCountry,index)=>(
                         eachCountry.country.toLowerCase().includes(query.toLowerCase()) &&
-                        <Grid item xs={12} md={6} lg={3} key={index}>
-                            <CardActionArea>
-                                <Card>
-                                    <CardContent>
-                                        <IndvidualCountry
-                                            // key={index}
-                                            //key={eachCountry.countryInfo.iso2}
-                                            countryName={eachCountry.country}
-                                            cases={eachCountry.cases}
-                                            deaths={eachCountry.deaths}
-                                            recovered={eachCountry.recovered}
-                                            className={classes.country__individualCountry}
-                                        />
-                                    </CardContent>
-                                </Card>
-                            </CardActionArea>
-                        </Grid>
+                        <ShowCountry 
+                            key={index}
+                            countryName={eachCountry.country}
+                            cases={eachCountry.cases}
+                            deaths={eachCountry.deaths}
+                            recovered={eachCountry.deaths}
+                        />
                     ))
                 ) : (
                     data.map((eachCountry,index)=>(
-                        <Grid item xs={12} md={6} lg={3} key={index}>
-                            <CardActionArea>
-                                <Card>
-                                    <CardContent>
-                                        <IndvidualCountry
-                                            // key={index}
-                                            //key={eachCountry.countryInfo.iso2}
-                                            countryName={eachCountry.country}
-                                            cases={eachCountry.cases}
-                                            deaths={eachCountry.deaths}
-                                            recovered={eachCountry.recovered}
-                                            className={classes.country__individualCountry}
-                                        />
-                                    </CardContent>
-                                </Card>
-                            </CardActionArea>
-                        </Grid>
+                        <ShowCountry 
+                            key={index}
+                            countryName={eachCountry.country}
+                            cases={eachCountry.cases}
+                            deaths={eachCountry.deaths}
+                            recovered={eachCountry.deaths}
+                        />
                     ))
                 )
             }
