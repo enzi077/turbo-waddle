@@ -31,17 +31,17 @@ const useStyles=makeStyles((theme)=>({
     }
 }))
 const Country=({data})=> {
-    const [search,setSearch]=useState('')
+    // const [search,setSearch]=useState('')
     const [query,setQuery]=useState('')
-    
+    let search=''
     const searchCountry=(e)=>{
         e.preventDefault()
         setQuery(search)
-        setSearch('')
+        search=''
     }
     
     const updateSearch=(e)=>{
-        setSearch(e.target.value)
+        search=e.target.value
     }
     
     const classes=useStyles()

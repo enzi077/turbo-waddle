@@ -8,6 +8,7 @@ const DashboardGraph=({countries,lastDays})=>{
     
     useEffect(()=>{
         reqData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[countries,lastDays])
     
     const reqData=async()=>{

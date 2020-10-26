@@ -57,7 +57,7 @@ const App=()=> {
                         Covid-19 Tracker
                     </Typography>
                     <Typography variant='subtitle2' className={classes.app__typographyCreator}>
-                        Created with ❤️ by <Link href='https://github.com/enzi077/turbo-waddle' className={classes.app__link}><strong>pulsating_photon</strong></Link>
+                        Created with love by <Link href='https://github.com/enzi077/turbo-waddle' className={classes.app__link}><strong>pulsating_photon</strong></Link>
                     </Typography>
                 </Toolbar>
             </AppBar>
