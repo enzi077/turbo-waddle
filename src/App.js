@@ -43,6 +43,7 @@ const App=()=> {
         const responseCountry=await fetch('https://disease.sh/v3/covid-19/countries?sort=cases')
         const dataCountry=await responseCountry.json()
         setCountriesData(dataCountry)
+        alert("If on mobile devices, switch to landscape mode for additional visualization")
     }
     
     const openPopUp=()=>{
