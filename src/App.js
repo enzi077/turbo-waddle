@@ -26,6 +26,16 @@ const useStyles=makeStyles((theme)=>({
         textDecoration:'none',
         color:'white'
     },
+    app__alertCard:{
+        backgroundColor:theme.palette.secondary.light,
+        padding:'5px',
+        borderRadius:'0',
+        display:'flex',
+        justifyContent:'center'
+    },
+    app__alert:{
+        color:theme.palette.secondary.dark
+    }
 }))
 
 const App=()=> {
@@ -43,7 +53,6 @@ const App=()=> {
         const responseCountry=await fetch('https://disease.sh/v3/covid-19/countries?sort=cases')
         const dataCountry=await responseCountry.json()
         setCountriesData(dataCountry)
-        alert("If on mobile devices, switch to landscape mode for additional visualization")
     }
     
     const openPopUp=()=>{
@@ -81,6 +90,11 @@ const App=()=> {
                         }
                     })
                 }
+                <div className='app__divAlert'>
+                    <Card className={classes.app__alertCard}>
+                        <Typography variant='caption' className={classes.app__alert}>If on mobile devices (width less than 580px), switch to landscape mode for additional visualization</Typography>
+                    </Card>
+                </div>
                 <Header/>
                 <div className='app__divGraph'>
                     <Card className={classes.app__card}>

@@ -1,5 +1,11 @@
-@media (max-width:580px){
+@media (max-width:579px){
     .app__divGraph {
+        display: none;
+    }
+}
+
+@media (min-width: 580px){
+    .app__divAlert {
         display: none;
     }
 }
