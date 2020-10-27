@@ -1,10 +1,12 @@
-import { AppBar, Card, CardActionArea, CardContent, Hidden, makeStyles,
+import { AppBar, Card,  CardContent, makeStyles,
 Toolbar, Typography, IconButton} from '@material-ui/core';
+import './App.css'
 import MenuIcon from '@material-ui/icons/Menu';
 import React, { useEffect, useState } from 'react';
 import Country from './components/Country';
 import DashboardGraph from './components/DashboardGraph';
 import SimpleDialog from './utils/SimpleDialog'
+import Header from './components/Header'
 
 const useStyles=makeStyles((theme)=>({
     root:{
@@ -23,12 +25,11 @@ const useStyles=makeStyles((theme)=>({
     app__reload:{
         textDecoration:'none',
         color:'white'
-    }
+    },
 }))
 
 const App=()=> {
     const [countriesData,setCountriesData]=useState([])
-    const [totalsForCountries,setTotalsForCountries]=useState([])
     const [open, setOpen] = useState(false);
     const tempCountry=[]
     const lastDays=100
@@ -36,19 +37,12 @@ const App=()=> {
     
     useEffect(()=>{
         reqDataForTopCountries()
-        totalsForCountriesData()
     },[])
     
     const reqDataForTopCountries=async()=>{
         const responseCountry=await fetch('https://disease.sh/v3/covid-19/countries?sort=cases')
         const dataCountry=await responseCountry.json()
         setCountriesData(dataCountry)
-    }
-    
-    const totalsForCountriesData=async()=>{
-        const response=await fetch('https://disease.sh/v3/covid-19/countries?sort=cases&allowNull=0')
-        const data=await response.json()
-        setTotalsForCountries(data)
     }
     
     const openPopUp=()=>{
@@ -70,7 +64,7 @@ const App=()=> {
                 <Toolbar>
                     <Typography variant='h6'>
                         <a href="/" onClick={setReload} className={classes.app__reload}>
-                            Covid-19 Tracker
+                            COVID-19 Tracker
                         </a>
                     </Typography>
                     <IconButton onClick={openPopUp} color='inherit' className={classes.app__typographyCreator} aria-label='menu'>
@@ -86,19 +80,15 @@ const App=()=> {
                         }
                     })
                 }
-                <Hidden smDown>
+                <Header/>
+                <div className='app__divGraph'>
                     <Card className={classes.app__card}>
-                        <CardActionArea>
-                            <CardContent>
-                                <DashboardGraph countries={tempCountry} lastDays={lastDays}/>
-                            </CardContent>
-                        </CardActionArea>
+                        <CardContent>
+                            <DashboardGraph countries={tempCountry} lastDays={lastDays}/>
+                        </CardContent>
                     </Card>
-                </Hidden>
-                {
-                    totalsForCountries &&
-                    <Country data={totalsForCountries}/>
-                }
+                </div>
+                <Country/>
         </div>
     )
 }

@@ -26,7 +26,7 @@ const DashboardGraph=({countries,lastDays})=>{
     const createNewDataset=(fatalityRateData)=>{
         const subdata={labels:[],datasets:[]}
         for(let i =0;i<fatalityRateData.length;i=i+lastDays){
-            let nthObject = {label: fatalityRateData[i].countryName,data:[],fill: false,borderColor: randomColor(),pointRadius:0.9};
+            let nthObject = {label: fatalityRateData[i].countryName,data:[],borderColor: randomColor(),fill: false,pointRadius:0, borderWidth:2};
             let fatalityRateArray = []
             for(let j=i;j<i+lastDays;j++){
                 if(j<fatalityRateData.length){

@@ -10,7 +10,8 @@ const useStyles=makeStyles((theme)=>({
     },
     simpleDialog__div:{
         color:theme.palette.primary.dark,
-        marginLeft:'20px'
+        marginLeft:'20px',
+        marginRight: '20px'
     },
     simpleDialog__divTechStack:{
         marginBottom:'20px',
@@ -32,8 +33,8 @@ function SimpleDialog(props) {
         <DialogTitle id="simple-dialog-title">Additional Information</DialogTitle>
         <div className={classes.simpleDialog__div}>
             <p>Created with <span aria-label='heart' role='img'>❤️</span> by <Link href='https://github.com/enzi077/turbo-waddle' className={classes.simpleDialog__link}><strong>pulsating_photon</strong></Link></p>
-            <p>For additional visualization, switch to landscape mode</p>
-            <p>Data extracted from <Link href="https://disease.sh/docs/#/" className={classes.simpleDialog__link}><strong>https://disease.sh/docs/#/</strong></Link>
+            <p>For additional visualization, switch to medium/large scale devices or to landscape mode (width 580px and up)</p>
+            <p>Data sourced from <Link href="https://disease.sh/docs/#/" className={classes.simpleDialog__link}><strong>https://disease.sh/docs/#/ </strong></Link>
             which has had a "notable mentions" tag for Covid-19 related data from
             <Link href='https://postman-toolboxes.github.io/covid-19/#featured-collections' className={classes.simpleDialog__link}><strong> Postman</strong></Link></p>
         </div>
