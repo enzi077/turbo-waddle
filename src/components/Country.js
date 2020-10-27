@@ -48,7 +48,7 @@ const Country=()=> {
     },[])
     
     const totalsForCountriesData=async()=>{
-        const response=await fetch('https://disease.sh/v3/covid-19/countries?sort=cases&allowNull=0')
+        const response=await fetch('https://disease.sh/v3/covid-19/countries')
         const data=await response.json()
         setTotalsForCountries(data)
     }
@@ -95,37 +95,11 @@ const Country=()=> {
                             countryName={eachCountry.country}
                             cases={eachCountry.cases}
                             deaths={eachCountry.deaths}
-                            recovered={eachCountry.deaths}
+                            recovered={eachCountry.recovered}
                         />
                     ))}
                 </Grid>
             }
-            {/* <Grid container spacing={3} className={classes.country__gridContainer}>
-            {
-                query ? (
-                    data.map((eachCountry,index)=>(
-                        eachCountry.country.toLowerCase().includes(query.toLowerCase()) &&
-                        <ShowCountry 
-                            key={index}
-                            countryName={eachCountry.country}
-                            cases={eachCountry.cases}
-                            deaths={eachCountry.deaths}
-                            recovered={eachCountry.deaths}
-                        />
-                    ))
-                ) : (
-                    data.map((eachCountry,index)=>(
-                        <ShowCountry 
-                            key={index}
-                            countryName={eachCountry.country}
-                            cases={eachCountry.cases}
-                            deaths={eachCountry.deaths}
-                            recovered={eachCountry.deaths}
-                        />
-                    ))
-                )
-            }
-            </Grid> */}
         </div>
     )
 }

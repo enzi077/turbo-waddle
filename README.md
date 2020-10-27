@@ -17,6 +17,6 @@ The API Documentation can be found at **https://disease.sh/docs/#/**.
 ### To get started:
 1.`npx create-react-app your-app-name`: This will create a barebone React app in your system<br/>
 2.`npm start`: Runs the local server on your system<br/>
-3.`npm run build`: Creates an optimized build<br/> 
+3.`npm run build`: Creates an optimized production build<br/> 
 
 ### Site URL - https://ncov19ncov20.netlify.app/
