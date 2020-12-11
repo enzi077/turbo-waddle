@@ -3,7 +3,7 @@ import randomColor from '../utils/randomColor'
 import {Line} from 'react-chartjs-2';
 
 const DashboardGraph=({countries,lastDays})=>{
-    const [data,setData]=useState([])
+    const [data,setData]=useState()
     const fatalityRateData=[]
     
     useEffect(()=>{
@@ -12,10 +12,12 @@ const DashboardGraph=({countries,lastDays})=>{
     },[countries,lastDays])
     
     const reqData=async()=>{
-        const response=await 
-            fetch(`https://disease.sh/v3/covid-19/historical/${countries[0]}%2C${countries[1]}%2C${countries[2]}%2C${countries[3]}%2C${countries[4]}?lastdays=${lastDays}`)
-        const dataFromApi=await response.json()
-        setData(dataFromApi)
+        if(countries){
+            const response=await 
+                fetch(`https://disease.sh/v3/covid-19/historical/${countries[0]}%2C${countries[1]}%2C${countries[2]}%2C${countries[3]}%2C${countries[4]}?lastdays=${lastDays}`)
+            const dataFromApi=await response.json()
+            setData(dataFromApi)
+        }
     }
     
     const genFatalityRateData=(countryName,fatalityRate,date)=>{
@@ -70,7 +72,7 @@ const DashboardGraph=({countries,lastDays})=>{
     
     return (
         <div>
-            {data.forEach(country=>{
+            {data && data.forEach(country=>{
                 if(country.message!=="Country not found or doesn't have any historical data"){
                     let cases=country.timeline.cases
                     let deaths=country.timeline.deaths
@@ -84,7 +86,6 @@ const DashboardGraph=({countries,lastDays})=>{
                     }
                 }
             })}
-            
             {
                 <div>
                     <Line 

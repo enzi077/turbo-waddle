@@ -11,7 +11,8 @@ import Header from './components/Header'
 const useStyles=makeStyles((theme)=>({
     root:{
         overflow: 'hidden',
-        backgroundColor: theme.palette.primary.light
+        backgroundColor: theme.palette.primary.light,
+        minHeight: '100vh'
     },
     app__card:{
         padding: '10px',
@@ -39,9 +40,9 @@ const useStyles=makeStyles((theme)=>({
 }))
 
 const App=()=> {
-    const [countriesData,setCountriesData]=useState([])
+    const [countriesData,setCountriesData]=useState()
     const [open, setOpen] = useState(false);
-    const tempCountry=[]
+    let tempCountry=[]
     const lastDays=100
     const classes=useStyles()
     
@@ -96,13 +97,16 @@ const App=()=> {
                     </Card>
                 </div>
                 <Header/>
-                <div className='app__divGraph'>
-                    <Card className={classes.app__card}>
-                        <CardContent>
-                            <DashboardGraph countries={tempCountry} lastDays={lastDays}/>
-                        </CardContent>
-                    </Card>
-                </div>
+                {
+                    tempCountry && countriesData &&
+                    <div className='app__divGraph'>
+                        <Card className={classes.app__card}>
+                            <CardContent>
+                                <DashboardGraph countries={tempCountry} lastDays={lastDays}/>
+                            </CardContent>
+                        </Card>
+                    </div>
+                }
                 <Country/>
         </div>
     )
